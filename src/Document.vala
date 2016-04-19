@@ -18,7 +18,9 @@ namespace Editor {
 			});
 			view.has_tooltip = false;
 			view.show_line_numbers = true;
+			#if HAVE_GTK316
 			view.background_pattern = Gtk.SourceBackgroundPatternType.GRID;
+			#endif
 			
 			errors_list = new Gee.ArrayList<Report.Error?>();
 			view.query_tooltip.connect ((x, y, keyboard_tooltip, tooltip) => {

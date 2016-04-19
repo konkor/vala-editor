@@ -15,7 +15,7 @@ namespace Editor {
 			return icon;
 		}
 		public unowned string? get_icon_name() { return null; }
-		public string? get_info() { return symbol.name; }
+		public string get_info() { return symbol.name; }
 		public string get_label() { return symbol.name; }
 		public string get_markup() { return symbol.name; }
 		public string get_text() { return symbol.name; }
@@ -161,7 +161,7 @@ namespace Editor {
 		
 		public void populate (Gtk.SourceCompletionContext context) {
 			Gtk.TextIter iter, start;
-			context.get_iter (out iter);
+			iter = context.iter;
 			if (start_line != iter.get_line()) {
 				start_line = iter.get_line();
 				start_column = iter.get_line_offset() - 1;

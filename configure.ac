@@ -11,7 +11,8 @@ LT_INIT
 AC_PROG_CC
 AM_PROG_VALAC
 
-VALA_VERSION=0.28
+VALA_VERSION=0.26
+GTK_VERSION_REQUIRED=3.16.0
 
 AC_ARG_WITH(
     vala,
@@ -22,10 +23,19 @@ AC_ARG_WITH(
     [
 	VALA_VERSION="$withval"
     ],
-    [VALA_VERSION=0.28]
+    [VALA_VERSION=0.26]
 )
 
 AC_SUBST(VALA_VERSION)
+
+PKG_CHECK_EXISTS([appindicator-0.1 >= $GTK_VERSION_REQUIRED],
+		enable_gtk316="yes",
+		enable_gtk316="no")
+
+if test "x$enable_gtk316" = "xyes" ; then
+	AC_DEFINE(HAVE_GTK316, 1, [Have Gtk316])
+fi
+AM_CONDITIONAL(HAVE_GTK316, test "x$enable_gtk316" = "xyes")
 
 PKG_CHECK_MODULES(EDITOR, [gtksourceview-3.0 json-glib-1.0 gee-0.8 libvala-$VALA_VERSION])
 AC_SUBST(EDITOR_CFLAGS)
