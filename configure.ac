@@ -28,7 +28,7 @@ AC_ARG_WITH(
 
 AC_SUBST(VALA_VERSION)
 
-PKG_CHECK_EXISTS([appindicator-0.1 >= $GTK_VERSION_REQUIRED],
+PKG_CHECK_EXISTS([gtk+-3.0 >= $GTK_VERSION_REQUIRED],
 		enable_gtk316="yes",
 		enable_gtk316="no")
 
